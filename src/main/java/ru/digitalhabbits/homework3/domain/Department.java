@@ -1,20 +1,21 @@
 package ru.digitalhabbits.homework3.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Accessors(chain = true)
 @Entity
 @Table(name = "department")
+@EqualsAndHashCode(exclude = "persons")
 public class Department {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(nullable = false, length = 80, unique = true)
@@ -22,4 +23,7 @@ public class Department {
 
     @Column(nullable = false, columnDefinition = "BOOL NOT NULL DEFAULT FALSE")
     private boolean closed;
+
+    @OneToMany(mappedBy = "department")
+    private Set<Person> persons;
 }

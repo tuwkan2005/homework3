@@ -31,8 +31,8 @@ jobs:
         with:
           # TODO set Heroku app name and user email
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name:
-          heroku_email:
+          heroku_app_name: homework3-andrey
+          heroku_email: tuwkan2005@yandex.ru
       - name: Checkout test repository
         uses: actions/checkout@v2
         with:

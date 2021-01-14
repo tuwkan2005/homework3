@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.digitalhabbits.homework3.exception.EntityDataConflictException;
 import ru.digitalhabbits.homework3.model.ErrorResponse;
 
 import javax.persistence.EntityNotFoundException;
@@ -34,6 +35,16 @@ public class ExceptionController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(RuntimeException.class)
     public ErrorResponse error(RuntimeException exception) {
+        logger.error("", exception);
+        return new ErrorResponse(exception.getMessage());
+    }
+
+    @ApiResponse(responseCode = "409",
+            description = "Requested data conflict",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(EntityDataConflictException.class)
+    public ErrorResponse error(EntityDataConflictException exception) {
         logger.error("", exception);
         return new ErrorResponse(exception.getMessage());
     }

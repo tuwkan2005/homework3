@@ -1,7 +1,7 @@
 package ru.digitalhabbits.homework3.dao;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.stereotype.Repository;
+import ru.digitalhabbits.homework3.domain.Department;
 import ru.digitalhabbits.homework3.domain.Person;
 
 import javax.annotation.Nonnull;
@@ -18,26 +18,35 @@ public class PersonDaoImpl
 
     @Override
     public Person findById(@Nonnull Integer id) {
-        // TODO: NotImplemented
-//        throw new NotImplementedException();
         return entityManager.find(Person.class, id);
     }
 
     @Override
     public List<Person> findAll() {
-        // TODO: NotImplemented
-        throw new NotImplementedException();
+        return entityManager.createQuery("SELECT p FROM Person p", Person.class).getResultList();
     }
 
     @Override
     public Person update(Person entity) {
-        // TODO: NotImplemented
-        throw new NotImplementedException();
+        entityManager.persist(entity);
+        return entity;
     }
 
     @Override
     public Person delete(Integer integer) {
-        // TODO: NotImplemented
-        throw new NotImplementedException();
+        Person person = findById(integer);
+
+        if (person != null) {
+            entityManager.remove(person);
+        }
+        return person;
+    }
+
+    @Override
+    public void bulkUpdateDepartment(Department newDepartment, Department oldDepartment) {
+        entityManager.createQuery("UPDATE Person SET department = :newDepartment WHERE department = :oldDepartment")
+                .setParameter("newDepartment", newDepartment)
+                .setParameter("oldDepartment", oldDepartment)
+                .executeUpdate();
     }
 }

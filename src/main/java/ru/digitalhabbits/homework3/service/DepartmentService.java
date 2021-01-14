@@ -25,7 +25,7 @@ public interface DepartmentService {
 
     void addPersonToDepartment(@Nonnull Integer departmentId, @Nonnull Integer personId);
 
-    void removePersonToDepartment(@Nonnull Integer departmentId, @Nonnull Integer personId);
+    void removePersonFromDepartment(@Nonnull Integer departmentId, @Nonnull Integer personId);
 
     void closeDepartment(@Nonnull Integer id);
 }

@@ -1,8 +1,12 @@
 package ru.digitalhabbits.homework3.dao;
 
 import org.springframework.data.repository.NoRepositoryBean;
+import ru.digitalhabbits.homework3.domain.Department;
 import ru.digitalhabbits.homework3.domain.Person;
 
 @NoRepositoryBean
 public interface PersonDao
-        extends CrudOperations<Person, Integer> {}
+        extends CrudOperations<Person, Integer> {
+
+    void bulkUpdateDepartment(Department newDepartment, Department oldDepartment);
+}

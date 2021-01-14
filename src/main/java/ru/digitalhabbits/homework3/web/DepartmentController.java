@@ -69,7 +69,7 @@ public class DepartmentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{departmentId}/{personId}")
     public void removePersonFromDepartment(@PathVariable Integer departmentId, @PathVariable Integer personId) {
-        departmentService.removePersonToDepartment(departmentId, personId);
+        departmentService.removePersonFromDepartment(departmentId, personId);
     }
 
     @ApiResponse(responseCode = "204", description = "Close department (not allowed to add new persons) and remove all existing persons from it")
