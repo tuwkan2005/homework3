@@ -24,13 +24,13 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: acade7c2-6162-4413-9800-7e9de0bd8ee7
           file: build/reports/jacoco/report.xml
       - name: Deploy project
         uses: akhileshns/heroku-deploy@v3.4.6
         with:
           # TODO set Heroku app name and user email
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_api_key: 59ce6456-d8c3-4f32-864c-f47684f1f854
           heroku_app_name: homework3-andrey
           heroku_email: tuwkan2005@yandex.ru
       - name: Checkout test repository
