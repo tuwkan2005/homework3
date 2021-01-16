@@ -97,7 +97,6 @@ class PersonDaoTest {
         assert personList.stream().noneMatch(p-> p.getId().equals(personId));
     }
 
-
     private List<Person> generatePersons(int count) {
         return IntStream.range(0, count)
                 .mapToObj(i -> new Person()
